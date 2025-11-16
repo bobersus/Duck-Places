@@ -1486,3 +1486,10 @@ body.nav-open .nav-toggle span:nth-child(3) {
 }
 
 /* ======================*
+
+/* Hide scroll-down button on mobile */
+@media (max-width: 768px) {
+  #scrollDown {
+    display: none !important;
+  }
+}
