@@ -96,19 +96,22 @@ async function fetchJson(url) {
 
 // === API через твой backend ===
 
-// 1) По universeIds получаем название, онлайн и визиты
+const API_BASE = "https://duck-backend-tqhy.onrender.com";
+
+// 1) Получение информации об играх
 async function fetchGamesInfo(universeIds) {
   if (!universeIds.length) return { data: [] };
-  const url = "/api/games?universeIds=" + universeIds.join(",");
+  const url = `${API_BASE}/api/games?universeIds=${universeIds.join(",")}`;
   return fetchJson(url);
 }
 
-// 2) По universeIds получаем иконки
+// 2) Получение иконок
 async function fetchGameIcons(universeIds) {
   if (!universeIds.length) return { data: [] };
-  const url = "/api/game-icons?universeIds=" + universeIds.join(",");
+  const url = `${API_BASE}/api/game-icons?universeIds=${universeIds.join(",")}`;
   return fetchJson(url);
 }
+
 
 // 3) Основная функция загрузки данных об играх
 async function loadGamesData() {
@@ -357,3 +360,4 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
