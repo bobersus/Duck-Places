@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Duck Places - Roblox Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Duck Places is a Roblox studio creating games that bring people together." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <!-- Optional Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script defer src="script.js"></script>
+</head>
+<body class="page">
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <div class="container header-inner">
+      <a href="#hero" class="brand">
+        <!-- Логотип из Google Drive вставь сюда -->
+        <img src="assets/logo-duck-places.png" alt="Duck Places logo" class="brand-logo" />
+        <span class="brand-text">Duck Places</span>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="games.html" class="nav-link">Games</a>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#contact" class="nav-link nav-link-primary">Contact Us</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+<main>
+  <!-- HERO / FIRST BLOCK -->
+  <section class="hero" id="hero">
+    <div class="container hero-inner">
+      <div class="hero-content hero-content-center">
+        <h1 class="hero-title">Duck Places</h1>
+        <p class="hero-subtitle">🤗 We create Roblox games to bring people together.</p>
+
+        <div class="hero-actions">
+          <a href="#our-games" class="btn btn-primary">Explore Games</a>
+          <a href="#about" class="btn btn-outline">About Us</a>
+        </div>
+
+        <div class="hero-stats hero-stats-inline">
+          <div class="hero-stat">
+            <span class="hero-stat-value" id="statCurrentPlayers">0</span>
+            <span class="hero-stat-label-inline">Current Players</span>
+          </div>
+
+          <span class="hero-stat-separator"></span>
+
+          <div class="hero-stat">
+            <span class="hero-stat-value" id="statTotalVisits">0</span>
+            <span class="hero-stat-label-inline">Total Visits</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="scroll-down" id="scrollDown" aria-label="Scroll down">
+      <span class="scroll-down-text">Scroll Down</span>
+      <span class="scroll-down-icon" aria-hidden="true"></span>
+    </button>
+  </section>
+
+  <!-- SECOND BLOCK: OUR GAMES (TOP 6) -->
+    <section class="section section-white reveal-on-scroll" id="our-games">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Our Games</h2>
+          <p class="section-subtitle">Discover our most active experiences right now.</p>
+        </div>
+
+        <div class="games-grid" id="topGamesGrid">
+          <!-- Карточки игр заполняются через JS -->
+        </div>
+
+        <div class="section-actions">
+          <a href="games.html" class="btn btn-primary">All Games</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- THIRD BLOCK: ABOUT US -->
+  <section class="section section-grey about-section reveal-on-scroll" id="about">
+
+    <div class="section-header">
+      <h2 class="section-title">About Us</h2>
+      <p class="section-subtitle">Welcome to Duck Places!</p>
+    </div>
+
+    <div class="about-card">
+      <p class="about-kicker">Founded in 2025</p>
+      <p class="about-text">
+        Duck Places is a vibrant Roblox studio dedicated to crafting experiences that are both
+        fun and unforgettable. We believe that the best games are those that bring people together,
+        creating spaces for friendship and shared laughter. Our team is passionate about building
+        immersive worlds where every player can find their own adventure.
+      </p>
+    </div>
+
+  </section>
+
+    <!-- FOURTH BLOCK: CONTACT -->
+    <section id="contact" class="contact-section reveal-on-scroll">
+    <div class="container">
+
+    <div class="section-header contact-header">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">Follow us on social media. Get support from us!</p>
+    </div>
+
+    <div class="contact-cards">
+      <a href="https://www.roblox.com/users/739163231/profile" target="_blank" class="contact-card">
+        <img src="assets/socials/roblox.png" class="contact-card-icon" />
+        <span>Roblox</span>
+      </a>
+
+      <a href="https://x.com/BoberSus" target="_blank" class="contact-card">
+        <img src="assets/socials/twitter.png" class="contact-card-icon" />
+        <span>Twitter</span>
+      </a>
+
+      <a href="https://discord.gg/cMs7w5RWD2" target="_blank" class="contact-card">
+        <img src="assets/socials/discord.png" class="contact-card-icon" />
+        <span>Discord</span>
+      </a>
+    </div>
+
+    <div class="contact-profile-card">
+      <img src="assets/avatar.png" class="contact-avatar">
+
+      <div class="contact-profile-info">
+        <h3 class="contact-name">BOBERSUS</h3>
+        <p class="contact-desc">Add me on Discord for faster response</p>
+
+        <div class="contact-discord-tag">
+          <img src="assets/socials/discord.png" class="discord-icon-small">
+          <span id="discordTag">bobersus</span>
+          <button id="copyDiscordBtn" class="copy-btn">Copy</button>
+        </div>
+
+        <span class="copy-feedback" id="copyFeedback">Copied!</span>
+      </div>
+    </div>
+
+    </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="assets/logo-duck-places.png" alt="Duck Places logo" />
+        </div>
+        <div>
+          <div class="footer-title">Duck Places</div>
+          <div class="footer-tagline">🤗 We create Roblox games to bring people together.</div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h4>Socials</h4>
+          <a href="https://www.roblox.com/users/739163231/profile" target="_blank">Roblox</a>
+          <a href="https://x.com/BoberSus" target="_blank">Twitter</a>
+          <a href="https://discord.gg/cMs7w5RWD2" target="_blank">Discord</a>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <a href="assets/privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
