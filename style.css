@@ -1328,20 +1328,17 @@ body.nav-open .nav-toggle span:nth-child(3) {
 }
 
 .contact-name {
-  margin-left: 100px;
   font-size: 2rem;
   font-weight: 700;
   color: #111827;
 }
 
 .contact-desc {
-  margin-left: 100px;
   color: #6b7280;
   font-size: 1rem;
 }
 
 .contact-discord-tag {
-  margin-left: 100px;
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -1493,3 +1490,4 @@ body.nav-open .nav-toggle span:nth-child(3) {
     display: none !important;
   }
 }
+
