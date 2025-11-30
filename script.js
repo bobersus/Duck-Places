@@ -39,7 +39,12 @@ const DUCK_PLACES_GAMES = [
     placeId: 105247140772516,
     universeId: 9077172391,
     robloxUrl: "https://www.roblox.com/games/105247140772516/"
-  }  // [😂] Trade a Meme
+  },  // [😂] Trade a Meme
+    {
+    placeId: 74841063706561,
+    universeId: 9264442606,
+    robloxUrl: "https://www.roblox.com/games/74841063706561/"
+  }  // Don't Take the Christmas Brainrots! ❄️
 ];
 
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -360,4 +365,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
