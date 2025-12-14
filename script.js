@@ -44,7 +44,12 @@ const DUCK_PLACES_GAMES = [
     placeId: 74841063706561,
     universeId: 9264442606,
     robloxUrl: "https://www.roblox.com/games/74841063706561/"
-  }  // Don't Take the Christmas Brainrots! ❄️
+  },  // Don't Take the Christmas Brainrots! ❄️
+  {
+    placeId: 117412602469270,
+    universeId: 9351526785,
+    robloxUrl: "https://www.roblox.com/games/117412602469270/"
+  }  // ⚽ Find the Soccer Players!
 ];
 
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -365,6 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
