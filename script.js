@@ -49,7 +49,12 @@ const DUCK_PLACES_GAMES = [
     placeId: 117412602469270,
     universeId: 9351526785,
     robloxUrl: "https://www.roblox.com/games/117412602469270/"
-  }  // ⚽ Find the Soccer Players!
+  },  // ⚽ Find the Soccer Players!
+  {
+    placeId: 140362899871634,
+    universeId: 9503575520,
+    robloxUrl: "https://www.roblox.com/games/140362899871634/"
+  }  // ⚡ +1 Speed Brainrot Escape
 ];
 
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -370,6 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
