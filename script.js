@@ -54,7 +54,12 @@ const DUCK_PLACES_GAMES = [
     placeId: 140362899871634,
     universeId: 9503575520,
     robloxUrl: "https://www.roblox.com/games/140362899871634/"
-  }  // ⚡ +1 Speed Brainrot Escape
+  },  // ⚡ +1 Speed Brainrot Escape
+  {
+    placeId: 79098716672556,
+    universeId: 9529342993,
+    robloxUrl: "https://www.roblox.com/games/79098716672556/"
+  },  // 🌊 Escape Tsunami for 67 🧠
 ];
 
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -375,6 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
