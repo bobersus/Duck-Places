@@ -60,6 +60,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 9529342993,
     robloxUrl: "https://www.roblox.com/games/79098716672556/"
   },  // 🌊 Escape Tsunami for 67 🧠
+  {
+    placeId: 80612861234754,
+    universeId: 9538075065,
+    robloxUrl: "https://www.roblox.com/games/80612861234754/"
+  },  // 🌋 Escape Lava to Steal Brainrots 🧠
 ];
 
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -380,6 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
