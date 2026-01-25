@@ -75,6 +75,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 9542987884,
     robloxUrl: "https://www.roblox.com/games/105171234489143/"
   },  // ⚡ +1 Speed Lava Brainrot Escape 🧠
+  {
+    placeId: 97026611450514,
+    universeId: 9621186953,
+    robloxUrl: "https://www.roblox.com/games/97026611450514/"
+  },  // ⛏️ Dig Lucky Block for Soccer Players ⚽
 ];
 
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -395,6 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
