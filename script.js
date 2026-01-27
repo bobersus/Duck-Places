@@ -66,11 +66,6 @@ const DUCK_PLACES_GAMES = [
     robloxUrl: "https://www.roblox.com/games/80612861234754/"
   },  // 🌋 Escape Lava to Steal Brainrots 🧠
   {
-    placeId: 76625594468864,
-    universeId: 9539213572,
-    robloxUrl: "https://www.roblox.com/games/76625594468864/"
-  },  // Escape Tsunami for Soccer Players ⚽
-  {
     placeId: 105171234489143,
     universeId: 9542987884,
     robloxUrl: "https://www.roblox.com/games/105171234489143/"
@@ -400,6 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
