@@ -272,17 +272,22 @@ function renderHeroStats() {
     if (visitsEl)  animateNumber(visitsEl,  visitsTotal, 1200, formatNumberShort); // с K/M/B
 }
 
+// В функции renderTopGames убедись, что очистка происходит только перед вставкой
 function renderTopGames() {
   const grid = document.getElementById("topGamesGrid");
   if (!grid) return;
 
-  grid.innerHTML = "";
+  // Если данных нет (например, ошибка загрузки), можно оставить скелетоны 
+  // или вывести надпись "Temporary unavailable"
+  if (gamesData.length === 0) return; 
+
+  grid.innerHTML = ""; // Удаляем скелетоны
 
   const sorted = [...gamesData].sort(
     (a, b) => (b.playing || 0) - (a.playing || 0)
   );
 
-  const top6 = sorted.slice(0, 8);
+  const top6 = sorted.slice(0, 8); 
   top6.forEach((game) => {
     grid.appendChild(createGameCard(game));
   });
@@ -395,6 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
