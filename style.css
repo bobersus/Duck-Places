@@ -1550,6 +1550,17 @@ body.nav-open .nav-toggle span:nth-child(3) {
     color: var(--color-primary);
 }
 
+/* Специальный отступ для страницы вакансий */
+.career-section-header {
+    margin-top: 60px !important; /* Убираем -80px и ставим положительный отступ */
+    margin-bottom: 50px;
+}
+
+/* Добавим отступ самой секции, чтобы отделить её от предыдущей */
+.section-grey {
+    padding-top: 80px !important;
+}
+
 @media (max-width: 768px) {
     .hero-mini {
         min-height: 40vh !important;
@@ -1564,3 +1575,4 @@ body.nav-open .nav-toggle span:nth-child(3) {
         width: 100%;
     }
 }
+
