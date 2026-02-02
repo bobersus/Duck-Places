@@ -1576,4 +1576,47 @@ body.nav-open .nav-toggle span:nth-child(3) {
     }
 }
 
+/* ============================================
+   PAGE 404
+   ============================================ */
+
+/* Фикс для страницы 404 */
+.page-404 {
+    height: 100vh;
+    overflow: hidden; /* Запрет скролла */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg);
+}
+
+.error-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.error-logo {
+    width: 120px;
+    margin: 0 auto 30px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+    color: var(--color-text);
+    background: linear-gradient(135deg, var(--color-text), var(--color-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.error-message {
+    font-size: 1.25rem;
+    color: var(--color-text-soft);
+    margin: 20px 0 40px;
+}
+
+
 
