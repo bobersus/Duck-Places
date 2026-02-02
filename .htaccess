@@ -1,6 +1,13 @@
 RewriteEngine On
-# Если файл существует с расширением .html, открывать его без расширения
+
+# 1. Убираем .html из адресной строки (редирект)
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [L,R=301]
+
+# 2. Позволяем серверу подхватывать .html файл без расширения в ссылке
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [NC,L]
+RewriteRule ^(.*?)/?$ $1.html [L]
+
+# 3. Твоя страница 404
 ErrorDocument 404 /404.html
