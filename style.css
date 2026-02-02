@@ -615,10 +615,11 @@ body.nav-open .nav-toggle span:nth-child(3) {
 }
 
 .game-card-image {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  transition: transform 0.5s ease-out;
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    height: auto; /* Позволяет aspect-ratio управлять высотой */
+    object-fit: cover;
+    transition: transform 0.5s ease-out;
 }
 
 /* Оверлей с текстом — изначально скрыт */
@@ -705,13 +706,13 @@ body.nav-open .nav-toggle span:nth-child(3) {
   margin-top: 32px;
 }
 
-/* Состояние загрузки (скелетон) */
-.game-card.is-loading {
-  pointer-events: none;
-  background: #f0f2f5;
-  border: 1px solid #eee;
-  min-height: 190px; /* Фиксируем высоту, чтобы не была "палкой" */
-  display: block;
+.game-card.is-loading .game-card-inner {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    background: linear-gradient(90deg, #f0f2f5 25%, #e0e2e5 50%, #f0f2f5 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
 }
 
 .game-card.is-loading .game-card-inner {
@@ -1617,6 +1618,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
     color: var(--color-text-soft);
     margin: 20px 0 40px;
 }
+
 
 
 
