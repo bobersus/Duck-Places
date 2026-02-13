@@ -90,7 +90,8 @@ const DUCK_PLACES_GAMES = [
     universeId: 9719249147,
     robloxUrl: "https://www.roblox.com/games/130243021042393/"
   },  // 🌊 Survive Flood for Fish 🐟
-
+]
+  
 // ФОРМАТИРОВАНИЕ ТЕКСТА
 function formatNumberShort(num) {
     if (num >= 1_000_000_000_000) return (num / 1_000_000_000_000).toFixed(2).replace(/\.00$/, "") + "T";
@@ -414,6 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
