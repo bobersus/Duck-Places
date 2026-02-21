@@ -76,11 +76,6 @@ const DUCK_PLACES_GAMES = [
     robloxUrl: "https://www.roblox.com/games/97026611450514/"
   },  // ⛏️ Break a Lucky Block for Soccer Players ⚽
   {
-    placeId: 132817939956815,
-    universeId: 9690899475,
-    robloxUrl: "https://www.roblox.com/games/132817939956815/"
-  },  // Steal from Soccer Players ⚽
-  {
     placeId: 112213813868621,
     universeId: 9717663227,
     robloxUrl: "https://www.roblox.com/games/112213813868621/"
@@ -90,6 +85,21 @@ const DUCK_PLACES_GAMES = [
     universeId: 9719249147,
     robloxUrl: "https://www.roblox.com/games/130243021042393/"
   },  // 🌊 Survive Flood for Fish 🐟
+  {
+    placeId: 98016706875864,
+    universeId: 9722653881,
+    robloxUrl: "https://www.roblox.com/games/98016706875864/"
+  },  // Survive LAVA for Forsaken! -- CONTRIBUTING
+  {
+    placeId: 101661207362747,
+    universeId: 9694451989,
+    robloxUrl: "https://www.roblox.com/games/101661207362747/"
+  },  // ⛏️ Break a Lucky Block for Sonic! -- CONTRIBUTING
+  {
+    placeId: 107880267815467,
+    universeId: 9725603971,
+    robloxUrl: "https://www.roblox.com/games/107880267815467/"
+  },  // Jump for Fish! 🐟
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -415,6 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
