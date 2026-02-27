@@ -120,6 +120,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 9789699160,
     robloxUrl: "https://www.roblox.com/games/127812545015173/"
   },  // Jump Escape for Lucky Blocks 🧠
+  {
+    placeId: 76129996532126,
+    universeId: 9807482840,
+    robloxUrl: "https://www.roblox.com/games/127812545015173/"
+  },  // Fly to Steal Soccer Legends ⚽
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -445,6 +450,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
