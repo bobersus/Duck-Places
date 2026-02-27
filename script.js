@@ -100,6 +100,26 @@ const DUCK_PLACES_GAMES = [
     universeId: 9725603971,
     robloxUrl: "https://www.roblox.com/games/107880267815467/"
   },  // Jump for Fish! 🐟
+  {
+    placeId: 122816304079935,
+    universeId: 9773328974,
+    robloxUrl: "https://www.roblox.com/games/122816304079935/"
+  },  // Jump for Soccer Players! ⚽
+  {
+    placeId: 118826252299916,
+    universeId: 9780466865,
+    robloxUrl: "https://www.roblox.com/games/118826252299916/"
+  },  // Jump Escape to Steal Soccer Legends ⚽
+  {
+    placeId: 91975522860736,
+    universeId: 9777772521,
+    robloxUrl: "https://www.roblox.com/games/91975522860736/"
+  },  // Jump for Forsaken!
+  {
+    placeId: 127812545015173,
+    universeId: 9789699160,
+    robloxUrl: "https://www.roblox.com/games/127812545015173/"
+  },  // Jump Escape for Lucky Blocks 🧠
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -425,6 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
