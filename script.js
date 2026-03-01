@@ -125,6 +125,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 9807482840,
     robloxUrl: "https://www.roblox.com/games/127812545015173/"
   },  // Fly to Steal Soccer Legends ⚽
+  {
+    placeId: 125527501479367,
+    universeId: 9818842533,
+    robloxUrl: "https://www.roblox.com/games/125527501479367/"
+  },  // 🚁 Fly Helicopter to Steal Fish! 🐟
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
@@ -450,6 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollReveal();   // ← добавили
   loadGamesData();
 });
+
 
 
 
