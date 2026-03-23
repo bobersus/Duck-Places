@@ -86,25 +86,10 @@ const DUCK_PLACES_GAMES = [
     robloxUrl: "https://www.roblox.com/games/130243021042393/"
   },  // 🌊 Survive Flood for Fish 🐟
   {
-    placeId: 98016706875864,
-    universeId: 9722653881,
-    robloxUrl: "https://www.roblox.com/games/98016706875864/"
-  },  // Survive LAVA for Forsaken! -- CONTRIBUTING
-  {
-    placeId: 101661207362747,
-    universeId: 9694451989,
-    robloxUrl: "https://www.roblox.com/games/101661207362747/"
-  },  // ⛏️ Break a Lucky Block for Sonic! -- CONTRIBUTING
-  {
     placeId: 107880267815467,
     universeId: 9725603971,
     robloxUrl: "https://www.roblox.com/games/107880267815467/"
   },  // Jump for Fish! 🐟
-  {
-    placeId: 122816304079935,
-    universeId: 9773328974,
-    robloxUrl: "https://www.roblox.com/games/122816304079935/"
-  },  // Jump for Soccer Players! ⚽
   {
     placeId: 118826252299916,
     universeId: 9780466865,
