@@ -115,6 +115,16 @@ const DUCK_PLACES_GAMES = [
     universeId: 9818842533,
     robloxUrl: "https://www.roblox.com/games/125527501479367/"
   },  // 🚁 Fly Helicopter to Steal Fish! 🐟
+  {
+    placeId: 84987750820459,
+    universeId: 9935160060,
+    robloxUrl: "https://www.roblox.com/games/84987750820459/"
+  },  // Be a Lucky Block for Soccer Players ⚽
+  {
+    placeId: 99273509268892,
+    universeId: 9934472185,
+    robloxUrl: "https://www.roblox.com/games/99273509268892/"
+  },  // Be a Lucky Block for Forsaken
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
