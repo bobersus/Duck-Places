@@ -125,6 +125,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 9934472185,
     robloxUrl: "https://www.roblox.com/games/99273509268892/"
   },  // Be a Lucky Block for Forsaken
+  {
+    placeId: 75713247211976,
+    universeId: 9937957650,
+    robloxUrl: "https://www.roblox.com/games/75713247211976/"
+  },  // Be a Lucky Block for Soccer Legends ⚽
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
