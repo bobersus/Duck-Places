@@ -130,6 +130,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 9937957650,
     robloxUrl: "https://www.roblox.com/games/75713247211976/"
   },  // Be a Lucky Block for Soccer Legends ⚽
+  {
+    placeId: 106757332745632,
+    universeId: 9938811150,
+    robloxUrl: "https://www.roblox.com/games/106757332745632/"
+  },  // Morph Tsunami to Steal Brainrots 🧠
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
