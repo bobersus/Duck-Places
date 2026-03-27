@@ -135,6 +135,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 9938811150,
     robloxUrl: "https://www.roblox.com/games/106757332745632/"
   },  // Morph Tsunami to Steal Brainrots 🧠
+  {
+    placeId: 106757332745632,
+    universeId: 83627413018283,
+    robloxUrl: "https://www.roblox.com/games/83627413018283/"
+  },  // Be a Anime Fruit
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
