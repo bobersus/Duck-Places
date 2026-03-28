@@ -140,6 +140,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 9947797452,
     robloxUrl: "https://www.roblox.com/games/83627413018283/"
   },  // Be a Anime Fruit
+  {
+    placeId: 76903203639722,
+    universeId: 9907145913,
+    robloxUrl: "https://www.roblox.com/games/76903203639722/"
+  },  // Steal from Anime Fruits!
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
