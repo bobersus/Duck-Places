@@ -91,11 +91,6 @@ const DUCK_PLACES_GAMES = [
     robloxUrl: "https://www.roblox.com/games/107880267815467/"
   },  // Jump for Fish! 🐟
   {
-    placeId: 118826252299916,
-    universeId: 9780466865,
-    robloxUrl: "https://www.roblox.com/games/118826252299916/"
-  },  // Jump Escape to Steal Soccer Legends ⚽
-  {
     placeId: 91975522860736,
     universeId: 9777772521,
     robloxUrl: "https://www.roblox.com/games/91975522860736/"
