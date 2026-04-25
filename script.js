@@ -135,6 +135,16 @@ const DUCK_PLACES_GAMES = [
     universeId: 10028413343,
     robloxUrl: "https://www.roblox.com/games/116439383380073/"
   },  // Steal from Soccer Legends ⚽
+  {
+    placeId: 95890275830941,
+    universeId: 10084052057,
+    robloxUrl: "https://www.roblox.com/games/95890275830941/"
+  },  // Kick a Anime Fruits
+  {
+    placeId: 107312375515501,
+    universeId: 10081815112,
+    robloxUrl: "https://www.roblox.com/games/107312375515501/"
+  },  // Kick a Soccer Legend ⚽
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
