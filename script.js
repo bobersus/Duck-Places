@@ -145,6 +145,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 10081815112,
     robloxUrl: "https://www.roblox.com/games/107312375515501/"
   },  // Kick a Soccer Legend ⚽
+  {
+    placeId: 122041399584442,
+    universeId: 10091685088,
+    robloxUrl: "https://www.roblox.com/games/122041399584442/"
+  },  // Kick a Lucky Block for Brawl Stars
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
