@@ -150,6 +150,41 @@ const DUCK_PLACES_GAMES = [
     universeId: 10091685088,
     robloxUrl: "https://www.roblox.com/games/122041399584442/"
   },  // Kick a Lucky Block for Brawl Stars
+  {
+    placeId: 95130942377305,
+    universeId: 10141827032,
+    robloxUrl: "https://www.roblox.com/games/95130942377305/"
+  },  // Steal from Brawl Stars
+  {
+    placeId: 101144661485594,
+    universeId: 10187176094,
+    robloxUrl: "https://www.roblox.com/games/101144661485594/"
+  },  // Soccer Players RNG
+  {
+    placeId: 121127095970727,
+    universeId: 10204711274,
+    robloxUrl: "https://www.roblox.com/games/121127095970727/"
+  },  // [⚽] Build a Ring Soccer Legends Farm
+  {
+    placeId: 131466666494135,
+    universeId: 10204104366,
+    robloxUrl: "https://www.roblox.com/games/131466666494135/"
+  },  // [🍓] Build A Ring Brainrot Farm
+  {
+    placeId: 84277904041744,
+    universeId: 9984878865,
+    robloxUrl: "https://www.roblox.com/games/84277904041744/"
+  },  // Devil Fruits Incremental
+  {
+    placeId: 97508208888362,
+    universeId: 9984324130,
+    robloxUrl: "https://www.roblox.com/games/97508208888362/"
+  },  // Poppy Playtime 5 Incremental
+  {
+    placeId: 122363975940797,
+    universeId: 10162977158,
+    robloxUrl: "https://www.roblox.com/games/122363975940797/"
+  },  // Steal from Squishy
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
