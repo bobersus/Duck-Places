@@ -103,7 +103,7 @@ const DUCK_PLACES_GAMES = [
   {
     placeId: 76129996532126,
     universeId: 9807482840,
-    robloxUrl: "https://www.roblox.com/games/127812545015173/"
+    robloxUrl: "https://www.roblox.com/games/76129996532126/"
   },  // Fly to Steal Soccer Legends ⚽
   {
     placeId: 125527501479367,
