@@ -185,6 +185,21 @@ const DUCK_PLACES_GAMES = [
     universeId: 10162977158,
     robloxUrl: "https://www.roblox.com/games/122363975940797/"
   },  // Steal from Squishy
+  {
+    placeId: 102824628124465,
+    universeId: 10250743032,
+    robloxUrl: "https://www.roblox.com/games/102824628124465/"
+  },  // Lucky Block Gate Runner
+  {
+    placeId: 108385878633583,
+    universeId: 10266169876,
+    robloxUrl: "https://www.roblox.com/games/108385878633583/"
+  },  // Soccer Legends Game ⚽
+  {
+    placeId: 102440227128223,
+    universeId: 10270435186,
+    robloxUrl: "https://www.roblox.com/games/102440227128223/"
+  },  // Devil Fruits Game
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
