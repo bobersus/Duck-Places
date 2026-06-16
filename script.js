@@ -200,6 +200,11 @@ const DUCK_PLACES_GAMES = [
     universeId: 10270435186,
     robloxUrl: "https://www.roblox.com/games/102440227128223/"
   },  // Devil Fruits Game
+  {
+    placeId: 72457210303073,
+    universeId: 10306657017,
+    robloxUrl: "https://www.roblox.com/games/72457210303073/"
+  },  // +1 Jump Keyboard Brainrot Escape 🧠
 ]
   
 // ФОРМАТИРОВАНИЕ ТЕКСТА
