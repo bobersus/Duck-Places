@@ -1,0 +1,9 @@
+{
+  "name": "duckplaces",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/preview.cjs",
+    "test": "node --test tests/hosting.test.js tests/catalogue.test.js",
+    "refresh-games": "node scripts/update-game-snapshot.cjs"
+  }
+}

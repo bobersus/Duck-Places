@@ -1,0 +1,9 @@
+.vercel/
+node_modules/
+deployment-result.json
+preview/
+.env
+.env.*
+!.env.example
+**/desktop.ini
+__pycache__/

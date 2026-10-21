@@ -1,551 +1,168 @@
-// === CONFIG: список наших игр (placeId + universeId) ===
+// Add games using their Roblox placeId and universeId only.
+// Names and destination place IDs come from the Roblox API.
 const DUCK_PLACES_GAMES = [
   {
-    placeId: 131146262725992,
-    universeId: 8688305922,
-    robloxUrl: "https://www.roblox.com/games/131146262725992"
-  }, // Don't Wake the Ronaldo ⚽
+    "placeId": 131146262725992,
+    "universeId": 8688305922
+  },
   {
-    placeId: 135429961410565,
-    universeId: 8881377191,
-    robloxUrl: "https://www.roblox.com/games/135429961410565"
-  }, // [🐶] Plants VS Pets!
+    "placeId": 135429961410565,
+    "universeId": 8881377191
+  },
   {
-    placeId: 107547510460716,
-    universeId: 9039819466,
-    robloxUrl: "https://www.roblox.com/games/107547510460716"
-  }, // [⚽] Shoot a Soccer Player
+    "placeId": 107547510460716,
+    "universeId": 9039819466
+  },
   {
-    placeId: 138539043468443,
-    universeId: 8054116823,
-    robloxUrl: "https://www.roblox.com/games/138539043468443"
-  }, // 🍗 Steal a Food
+    "placeId": 138539043468443,
+    "universeId": 8054116823
+  },
   {
-    placeId: 129037710690382,
-    universeId: 8706724616,
-    robloxUrl: "https://www.roblox.com/games/129037710690382"
-  }, // Don't Wake the Memes 😂
+    "placeId": 129037710690382,
+    "universeId": 8706724616
+  },
   {
-    placeId: 71980637800931,
-    universeId: 8793655024,
-    robloxUrl: "https://www.roblox.com/games/71980637800931"
-  },  // [🌻] Plants VS 99 Nights in the Forest
+    "placeId": 71980637800931,
+    "universeId": 8793655024
+  },
   {
-    placeId: 116000696149790,
-    universeId: 9111895546,
-    robloxUrl: "https://www.roblox.com/games/116000696149790/"
-  },  // Don't Steal the Pets 😺
+    "placeId": 116000696149790,
+    "universeId": 9111895546
+  },
   {
-    placeId: 105247140772516,
-    universeId: 9077172391,
-    robloxUrl: "https://www.roblox.com/games/105247140772516/"
-  },  // [😂] Trade a Meme
+    "placeId": 105247140772516,
+    "universeId": 9077172391
+  },
   {
-    placeId: 74841063706561,
-    universeId: 9264442606,
-    robloxUrl: "https://www.roblox.com/games/74841063706561/"
-  },  // Don't Take the Christmas Brainrots! ❄️
+    "placeId": 74841063706561,
+    "universeId": 9264442606
+  },
   {
-    placeId: 117412602469270,
-    universeId: 9351526785,
-    robloxUrl: "https://www.roblox.com/games/117412602469270/"
-  },  // ⚽ Find the Soccer Players!
+    "placeId": 117412602469270,
+    "universeId": 9351526785
+  },
   {
-    placeId: 140362899871634,
-    universeId: 9503575520,
-    robloxUrl: "https://www.roblox.com/games/140362899871634/"
-  },  // ⚡ +1 Speed Brainrot Escape
+    "placeId": 140362899871634,
+    "universeId": 9503575520
+  },
   {
-    placeId: 79098716672556,
-    universeId: 9529342993,
-    robloxUrl: "https://www.roblox.com/games/79098716672556/"
-  },  // 🌊 Escape Tsunami for 67 🧠
+    "placeId": 79098716672556,
+    "universeId": 9529342993
+  },
   {
-    placeId: 80612861234754,
-    universeId: 9538075065,
-    robloxUrl: "https://www.roblox.com/games/80612861234754/"
-  },  // 🌋 Escape Lava to Steal Brainrots 🧠
+    "placeId": 80612861234754,
+    "universeId": 9538075065
+  },
   {
-    placeId: 105171234489143,
-    universeId: 9542987884,
-    robloxUrl: "https://www.roblox.com/games/105171234489143/"
-  },  // ⚡ +1 Speed Lava Brainrot Escape 🧠
+    "placeId": 105171234489143,
+    "universeId": 9542987884
+  },
   {
-    placeId: 97026611450514,
-    universeId: 9621186953,
-    robloxUrl: "https://www.roblox.com/games/97026611450514/"
-  },  // ⛏️ Break a Lucky Block for Soccer Players ⚽
+    "placeId": 97026611450514,
+    "universeId": 9621186953
+  },
   {
-    placeId: 112213813868621,
-    universeId: 9717663227,
-    robloxUrl: "https://www.roblox.com/games/112213813868621/"
-  },  // Survive Lava for Soccer Players ⚽
+    "placeId": 112213813868621,
+    "universeId": 9717663227
+  },
   {
-    placeId: 130243021042393,
-    universeId: 9719249147,
-    robloxUrl: "https://www.roblox.com/games/130243021042393/"
-  },  // 🌊 Survive Flood for Fish 🐟
+    "placeId": 130243021042393,
+    "universeId": 9719249147
+  },
   {
-    placeId: 107880267815467,
-    universeId: 9725603971,
-    robloxUrl: "https://www.roblox.com/games/107880267815467/"
-  },  // Jump for Fish! 🐟
+    "placeId": 107880267815467,
+    "universeId": 9725603971
+  },
   {
-    placeId: 91975522860736,
-    universeId: 9777772521,
-    robloxUrl: "https://www.roblox.com/games/91975522860736/"
-  },  // Jump for Forsaken!
+    "placeId": 91975522860736,
+    "universeId": 9777772521
+  },
   {
-    placeId: 127812545015173,
-    universeId: 9789699160,
-    robloxUrl: "https://www.roblox.com/games/127812545015173/"
-  },  // Jump Escape for Lucky Blocks 🧠
+    "placeId": 127812545015173,
+    "universeId": 9789699160
+  },
   {
-    placeId: 76129996532126,
-    universeId: 9807482840,
-    robloxUrl: "https://www.roblox.com/games/76129996532126/"
-  },  // Fly to Steal Soccer Legends ⚽
+    "placeId": 76129996532126,
+    "universeId": 9807482840
+  },
   {
-    placeId: 125527501479367,
-    universeId: 9818842533,
-    robloxUrl: "https://www.roblox.com/games/125527501479367/"
-  },  // 🚁 Fly Helicopter to Steal Fish! 🐟
+    "placeId": 125527501479367,
+    "universeId": 9818842533
+  },
   {
-    placeId: 84987750820459,
-    universeId: 9935160060,
-    robloxUrl: "https://www.roblox.com/games/84987750820459/"
-  },  // Be a Lucky Block for Soccer Players ⚽
+    "placeId": 84987750820459,
+    "universeId": 9935160060
+  },
   {
-    placeId: 99273509268892,
-    universeId: 9934472185,
-    robloxUrl: "https://www.roblox.com/games/99273509268892/"
-  },  // Be a Lucky Block for Forsaken
+    "placeId": 99273509268892,
+    "universeId": 9934472185
+  },
   {
-    placeId: 75713247211976,
-    universeId: 9937957650,
-    robloxUrl: "https://www.roblox.com/games/75713247211976/"
-  },  // Be a Lucky Block for Soccer Legends ⚽
+    "placeId": 75713247211976,
+    "universeId": 9937957650
+  },
   {
-    placeId: 106757332745632,
-    universeId: 9938811150,
-    robloxUrl: "https://www.roblox.com/games/106757332745632/"
-  },  // Morph Tsunami to Steal Brainrots 🧠
+    "placeId": 106757332745632,
+    "universeId": 9938811150
+  },
   {
-    placeId: 116439383380073,
-    universeId: 10028413343,
-    robloxUrl: "https://www.roblox.com/games/116439383380073/"
-  },  // Steal from Soccer Legends ⚽
+    "placeId": 116439383380073,
+    "universeId": 10028413343
+  },
   {
-    placeId: 95890275830941,
-    universeId: 10084052057,
-    robloxUrl: "https://www.roblox.com/games/95890275830941/"
-  },  // Kick a Anime Fruits
+    "placeId": 95890275830941,
+    "universeId": 10084052057
+  },
   {
-    placeId: 107312375515501,
-    universeId: 10081815112,
-    robloxUrl: "https://www.roblox.com/games/107312375515501/"
-  },  // Kick a Soccer Legend ⚽
+    "placeId": 107312375515501,
+    "universeId": 10081815112
+  },
   {
-    placeId: 122041399584442,
-    universeId: 10091685088,
-    robloxUrl: "https://www.roblox.com/games/122041399584442/"
-  },  // Kick a Lucky Block for Brawl Stars
+    "placeId": 122041399584442,
+    "universeId": 10091685088
+  },
   {
-    placeId: 95130942377305,
-    universeId: 10141827032,
-    robloxUrl: "https://www.roblox.com/games/95130942377305/"
-  },  // Steal from Brawl Stars
+    "placeId": 95130942377305,
+    "universeId": 10141827032
+  },
   {
-    placeId: 101144661485594,
-    universeId: 10187176094,
-    robloxUrl: "https://www.roblox.com/games/101144661485594/"
-  },  // Soccer Players RNG
+    "placeId": 101144661485594,
+    "universeId": 10187176094
+  },
   {
-    placeId: 121127095970727,
-    universeId: 10204711274,
-    robloxUrl: "https://www.roblox.com/games/121127095970727/"
-  },  // [⚽] Build a Ring Soccer Legends Farm
+    "placeId": 121127095970727,
+    "universeId": 10204711274
+  },
   {
-    placeId: 131466666494135,
-    universeId: 10204104366,
-    robloxUrl: "https://www.roblox.com/games/131466666494135/"
-  },  // [🍓] Build A Ring Brainrot Farm
+    "placeId": 131466666494135,
+    "universeId": 10204104366
+  },
   {
-    placeId: 84277904041744,
-    universeId: 9984878865,
-    robloxUrl: "https://www.roblox.com/games/84277904041744/"
-  },  // Devil Fruits Incremental
+    "placeId": 84277904041744,
+    "universeId": 9984878865
+  },
   {
-    placeId: 97508208888362,
-    universeId: 9984324130,
-    robloxUrl: "https://www.roblox.com/games/97508208888362/"
-  },  // Poppy Playtime 5 Incremental
+    "placeId": 97508208888362,
+    "universeId": 9984324130
+  },
   {
-    placeId: 122363975940797,
-    universeId: 10162977158,
-    robloxUrl: "https://www.roblox.com/games/122363975940797/"
-  },  // Steal from Squishy
+    "placeId": 122363975940797,
+    "universeId": 10162977158
+  },
   {
-    placeId: 102824628124465,
-    universeId: 10250743032,
-    robloxUrl: "https://www.roblox.com/games/102824628124465/"
-  },  // Lucky Block Gate Runner
+    "placeId": 102824628124465,
+    "universeId": 10250743032
+  },
   {
-    placeId: 108385878633583,
-    universeId: 10266169876,
-    robloxUrl: "https://www.roblox.com/games/108385878633583/"
-  },  // Soccer Legends Game ⚽
+    "placeId": 108385878633583,
+    "universeId": 10266169876
+  },
   {
-    placeId: 102440227128223,
-    universeId: 10270435186,
-    robloxUrl: "https://www.roblox.com/games/102440227128223/"
-  },  // Devil Fruits Game
+    "placeId": 102440227128223,
+    "universeId": 10270435186
+  },
   {
-    placeId: 72457210303073,
-    universeId: 10306657017,
-    robloxUrl: "https://www.roblox.com/games/72457210303073/"
-  },  // +1 Jump Keyboard Brainrot Escape 🧠
-]
-  
-// ФОРМАТИРОВАНИЕ ТЕКСТА
-function formatNumberShort(num) {
-    if (num >= 1_000_000_000_000) return (num / 1_000_000_000_000).toFixed(2).replace(/\.00$/, "") + "T";
-    if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(2).replace(/\.00$/, "") + "B";
-    if (num >= 1_000_000) return (num / 1_000_000).toFixed(2).replace(/\.00$/, "") + "M";
-    if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, "") + "K";
-    return num.toString();
-}
-
-// Внутренние данные после загрузки с API
-let gamesData = [];
-
-// === УТИЛИТЫ ===
-
-function formatNumber(num) {
-  if (num == null || isNaN(num)) return "0";
-  return Number(num).toLocaleString("en-US");
-}
-
-function animateNumber(element, value, duration, formatter) {
-  const start = performance.now();
-  const startValue = 0;
-  const endValue = Number(value) || 0;
-
-  function frame(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const current = startValue + (endValue - startValue) * progress;
-    const intValue = Math.floor(current);
-
-    let display = intValue.toLocaleString("en-US");
-    if (typeof formatter === "function") {
-      display = formatter(intValue);
-    }
-
-    element.textContent = display;
-
-    if (progress < 1) {
-      requestAnimationFrame(frame);
-    }
+    "placeId": 72457210303073,
+    "universeId": 10306657017
   }
-
-  requestAnimationFrame(frame);
-}
-
-async function fetchJson(url) {
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`Request failed ${res.status} for ${url}`);
-  }
-  return res.json();
-}
-
-// === API через твой backend ===
-
-const API_BASE = "https://duck-backend-tqhy.onrender.com";
-
-// 1) Получение информации об играх
-async function fetchGamesInfo(universeIds) {
-  if (!universeIds.length) return { data: [] };
-  const url = `${API_BASE}/api/games?universeIds=${universeIds.join(",")}`;
-  return fetchJson(url);
-}
-
-// 2) Получение иконок
-async function fetchGameIcons(universeIds) {
-  if (!universeIds.length) return { data: [] };
-  const url = `${API_BASE}/api/game-icons?universeIds=${universeIds.join(",")}`;
-  return fetchJson(url);
-}
-
-
-// 3) Основная функция загрузки данных об играх
-async function loadGamesData() {
-  try {
-    const universeIds = DUCK_PLACES_GAMES.map((g) => g.universeId);
-
-    const [gamesInfo, iconsInfo] = await Promise.all([
-      fetchGamesInfo(universeIds),
-      fetchGameIcons(universeIds)
-    ]);
-
-    const universeStatsMap = {};
-    (gamesInfo.data || []).forEach((g) => {
-      universeStatsMap[g.id] = {
-        name: g.name,
-        playing: g.playing,
-        visits: g.visits
-      };
-    });
-
-    const iconMap = {};
-    (iconsInfo.data || []).forEach((i) => {
-      iconMap[i.targetId] = i.imageUrl;
-    });
-
-    // Собираем gamesData в том же порядке, что и DUCK_PLACES_GAMES
-    gamesData = DUCK_PLACES_GAMES.map((base, index) => {
-      const universeId = base.universeId;
-
-      const stats = universeStatsMap[universeId] || {};
-      const thumbnail =
-        iconMap[universeId] || "assets/game-placeholder.png";
-
-      const name =
-        stats.name ||
-        `Duck Places Game #${index + 1}`;
-
-      const playing = stats.playing ?? 0;
-      const visits = stats.visits ?? 0;
-
-      const robloxUrl =
-        base.robloxUrl ||
-        `https://www.roblox.com/games/${base.placeId}`;
-
-      return {
-        placeId: base.placeId,
-        universeId,
-        name,
-        playing,
-        visits,
-        thumbnail,
-        robloxUrl
-      };
-    });
-  } catch (err) {
-    console.error("Failed to load Roblox data, using fallback", err);
-
-    // Fallback, если даже backend не достучался до Roblox
-    gamesData = DUCK_PLACES_GAMES.map((g, index) => ({
-      placeId: g.placeId,
-      universeId: g.universeId,
-      name: `Duck Places Game #${index + 1}`,
-      playing: 0,
-      visits: 0,
-      thumbnail: "assets/game-placeholder.png",
-      robloxUrl: g.robloxUrl || `https://www.roblox.com/games/${g.placeId}`
-    }));
-  }
-
-  renderEverything();
-}
-
-// === РЕНДЕР ===
-
-function createGameCard(game) {
-  const a = document.createElement("a");
-  a.href = game.robloxUrl;
-  a.target = "_blank";
-  a.className = "game-card";
-  a.setAttribute("data-place-id", game.placeId);
-
-  a.innerHTML = `
-    <div class="game-card-inner">
-      <img
-        src="${game.thumbnail}"
-        alt="${game.name}"
-        class="game-card-image"
-        loading="lazy"
-      />
-      <div class="game-card-overlay">
-        <h3 class="game-card-title">${game.name}</h3>
-        <div class="game-card-stats">
-          <div class="game-stat-pill">
-            <span class="game-stat-label">Online</span>
-            <span class="game-stat-value">${formatNumber(game.playing)}</span>
-          </div>
-          <div class="game-stat-pill">
-            <span class="game-stat-label">Visits</span>
-            <span class="game-stat-value">${formatNumber(game.visits)}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  return a;
-}
-
-function renderHeroStats() {
-  const playersTotal = gamesData.reduce(
-    (sum, g) => sum + (g.playing || 0),
-    0
-  );
-  const visitsTotal = gamesData.reduce(
-    (sum, g) => sum + (g.visits || 0),
-    0
-  );
-
-    const playersEl = document.getElementById("statCurrentPlayers");
-    const visitsEl  = document.getElementById("statTotalVisits");
-
-    if (playersEl) animateNumber(playersEl, playersTotal, 1000);                 // обычная анимация
-    if (visitsEl)  animateNumber(visitsEl,  visitsTotal, 1200, formatNumberShort); // с K/M/B
-}
-
-// В функции renderTopGames убедись, что очистка происходит только перед вставкой
-function renderTopGames() {
-  const grid = document.getElementById("topGamesGrid");
-  if (!grid) return;
-
-  // Если данных нет (например, ошибка загрузки), можно оставить скелетоны 
-  // или вывести надпись "Temporary unavailable"
-  if (gamesData.length === 0) return; 
-
-  grid.innerHTML = ""; // Удаляем скелетоны
-
-  const sorted = [...gamesData].sort(
-    (a, b) => (b.playing || 0) - (a.playing || 0)
-  );
-
-  const top6 = sorted.slice(0, 8); 
-  top6.forEach((game) => {
-    grid.appendChild(createGameCard(game));
-  });
-}
-
-function renderAllGames() {
-  const grid = document.getElementById("allGamesGrid");
-  if (!grid) return;
-
-  grid.innerHTML = "";
-
-  const sorted = [...gamesData].sort(
-    (a, b) => (b.playing || 0) - (a.playing || 0)
-  );
-
-  sorted.forEach((game) => {
-    grid.appendChild(createGameCard(game));
-  });
-}
-
-function renderEverything() {
-  renderHeroStats();
-  renderTopGames();
-  renderAllGames();
-}
-
-// === UI: навигация, скролл, копирование Discord ===
-
-function setupNavToggle() {
-  const toggle = document.getElementById("navToggle");
-  const nav = document.getElementById("mainNav");
-
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("nav-open");
-  });
-
-  nav.addEventListener("click", (e) => {
-    if (e.target.closest("a")) {
-      document.body.classList.remove("nav-open");
-    }
-  });
-}
-
-function setupScrollDown() {
-  const btn = document.getElementById("scrollDown");
-  const target = document.getElementById("our-games");
-  if (!btn || !target) return;
-
-  btn.addEventListener("click", () => {
-    target.scrollIntoView({ behavior: "smooth" });
-  });
-}
-
-function setupDiscordCopy() {
-  const btn = document.getElementById("copyDiscordBtn");
-  const tagEl = document.getElementById("discordTag");
-  const feedback = document.getElementById("copyFeedback");
-
-  if (!btn || !tagEl) return;
-
-  btn.addEventListener("click", async () => {
-    const text = tagEl.textContent.trim();
-    try {
-      await navigator.clipboard.writeText(text);
-      if (feedback) {
-        feedback.classList.add("visible");
-        setTimeout(() => feedback.classList.remove("visible"), 1600);
-      }
-    } catch (err) {
-      console.error("Clipboard error", err);
-    }
-  });
-}
-
-function setupScrollReveal() {
-  const elements = document.querySelectorAll(".reveal-on-scroll");
-  if (!elements.length) return;
-
-  // Фоллбек для старых браузеров
-  if (!("IntersectionObserver" in window)) {
-    elements.forEach(el => el.classList.add("is-visible"));
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target); // анимируем только один раз
-        }
-      });
-    },
-    {
-      threshold: 0.2 // секция считается видимой, когда 20% в зоне экрана
-    }
-  );
-
-  elements.forEach(el => observer.observe(el));
-}
-
-// === ИНИЦИАЛИЗАЦИЯ ===
-
-document.addEventListener("DOMContentLoaded", () => {
-  setupNavToggle();
-  setupScrollDown();
-  setupDiscordCopy();
-  setupScrollReveal();   // ← добавили
-  loadGamesData();
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+];

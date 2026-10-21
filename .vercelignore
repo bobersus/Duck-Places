@@ -1,0 +1,10 @@
+.git
+.htaccess
+CNAME
+**/desktop.ini
+node_modules
+tests
+scripts
+DEPLOYMENT.md
+deployment-result.json
+preview
