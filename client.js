@@ -60,8 +60,7 @@ async function refreshGames() {
   if (results[0].status === 'fulfilled' && stats.size) lastUpdated = new Date().toISOString();
   try { localStorage.setItem(CACHE_KEY, JSON.stringify({ games: gamesData, updatedAt: lastUpdated })); } catch { /* Storage is optional. */ }
   renderEverything();
-  if (results.some(result => result.status === 'rejected')) status('Live updates are temporarily unavailable. Showing the latest saved data.');
-  else updateTimestamp();
+  updateTimestamp();
   refreshPending = false;
 }
 function updateTimestamp() {
@@ -127,6 +126,8 @@ function renderEverything() {
 }
 document.addEventListener('DOMContentLoaded', () => {
   setupSortPicker();
+  const gameCount = document.querySelector('.board-number');
+  if (gameCount) gameCount.textContent = DUCK_PLACES_GAMES.length;
   const nav = document.getElementById('mainNav');
   const toggle = document.getElementById('navToggle');
   function closeNav() { document.body.classList.remove('nav-open'); toggle?.setAttribute('aria-expanded', 'false'); }

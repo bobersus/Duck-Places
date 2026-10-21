@@ -5,7 +5,8 @@ const vm = require('node:vm');
 
 test('catalogue requires only placeId and universeId', () => {
   const games = vm.runInNewContext(fs.readFileSync('script.js', 'utf8') + ';DUCK_PLACES_GAMES');
-  assert.equal(games.length, 41);
+  assert.ok(games.length > 0);
+  assert.equal(new Set(games.map(game => game.universeId)).size, games.length);
   for (const game of games) {
     assert.deepEqual(Object.keys(game).sort(), ['placeId', 'universeId']);
     assert.ok(Number.isSafeInteger(game.placeId) && Number.isSafeInteger(game.universeId));

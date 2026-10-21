@@ -2,7 +2,7 @@
 
 These changes are local only. The existing Vercel deployment has not been updated.
 
-The footer now uses sun / monitor / moon theme icons (Light / System / Dark), with accessible names and tooltips. Decorative section labels and successful statistics timestamps are removed. API failure messages are retained. Contact Us is orange in both themes. Privacy Policy links now open privacy-policy.html, a complete HTML conversion of the original PDF with a table of contents and a link to the unchanged PDF. Content fidelity is checked by tests/policy-content.py using the bundled Python runtime.
+The footer now uses sun / monitor / moon theme icons (Light / System / Dark), with accessible names and tooltips. Decorative section labels, statistics timestamps and API failure messages are removed. Contact Us is orange in both themes. Privacy Policy links now open privacy-policy.html, a complete HTML conversion of the original PDF with a table of contents and a link to the unchanged PDF. Content fidelity is checked by tests/policy-content.py using the bundled Python runtime.
 
 Run from this folder (Node.js 22 or later):
 
@@ -18,9 +18,9 @@ Open http://127.0.0.1:4173. No dependency installation is necessary. The local s
 - `script.js`: catalogue configuration. Add only `placeId` and `universeId`; names are loaded from Roblox, and links are generated from the API's `rootPlaceId` (with the configured `placeId` as a fallback). No manual `name` or `robloxUrl` is needed. Run `npm run refresh-games` after adding games to update the immediate-loading snapshot.
 - `client.js`: cards, search, sorting, navigation, caching and background updates.
 - `api/game-thumbnails.js`: fetches the first Roblox thumbnail (`countPerUniverse=1`, 768×432 WebP). Cards use wide 16:9 images. Pending or missing thumbnails keep the saved cover or the local placeholder; game icons are not used as a fallback.
-- `assets/games-data.js`: saved snapshot of 41 games and their first thumbnails. URLs reference Roblox CDN; external images need a network connection. Refresh with `npm run refresh-games`.
+- `assets/games-data.js`: saved snapshot of the configured games and their first thumbnails. URLs reference Roblox CDN; external images need a network connection. Refresh with `npm run refresh-games`. The Refresh game catalogue workflow also regenerates and commits this file when script.js changes on main, and requests a rebuild if the site uses branch-based GitHub Pages.
 
-The saved catalogue renders immediately, then requests current statistics and thumbnails in the background. Browser storage preserves the latest successful values. If the API fails, cards remain usable and the page reports that saved data is being shown.
+The saved catalogue renders immediately, then requests current statistics and thumbnails in the background. Browser storage preserves the latest successful values. If the API fails, cards remain usable without displaying an error banner. GitHub Pages does not run the Node.js API functions: it needs the saved snapshot. For live updates, host the site and its /api routes on Vercel and point the domain there.
 
 Validation: `npm test`. The local browser check `node scripts/check-local.cjs` uses this machine's bundled Playwright and installed Microsoft Edge; its screenshots are saved in `preview/`. Screenshots and local helpers are excluded from deployment.
 

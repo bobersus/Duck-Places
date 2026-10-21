@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 async function main() {
+  const catalogueSize = vm.runInNewContext(fs.readFileSync('script.js', 'utf8') + ';DUCK_PLACES_GAMES.length');
   fs.mkdirSync('preview', { recursive: true });
   const browser = await chromium.launch({ channel: 'msedge', headless: true });
   try {
@@ -20,14 +21,14 @@ async function main() {
     await page.locator('#our-games').scrollIntoViewIfNeeded();
     await page.screenshot({ path: 'preview/games-section.png' });
     await page.goto('http://127.0.0.1:4173/games', { waitUntil: 'networkidle' });
-    assert.equal(await page.locator('#allGamesGrid .game-card').count(), 41);
+    assert.equal(await page.locator('#allGamesGrid .game-card').count(), catalogueSize);
     const imageResponse = await page.request.get('http://127.0.0.1:4173/api/game-thumbnails?universeIds=8688305922');
     assert.equal(imageResponse.status(), 200);
     const firstThumbnail = (await imageResponse.json()).data[0].thumbnails[0].imageUrl;
     assert.equal(await page.locator('[data-place-id="131146262725992"] img').getAttribute('src'), firstThumbnail);
     await page.locator('#gameSearch').fill('soccer');
     const results = await page.locator('.game-card-title').allTextContents();
-    assert.ok(results.length > 0 && results.length < 41 && results.every(name => name.toLowerCase().includes('soccer')));
+    assert.ok(results.length > 0 && results.length < catalogueSize && results.every(name => name.toLowerCase().includes('soccer')));
     await page.locator('#gameSearch').fill('zzzz-no-such-game');
     assert.equal(await page.locator('.game-card').count(), 0);
     assert.ok(await page.locator('.empty-state').isVisible());
@@ -57,10 +58,10 @@ async function main() {
     // The saved catalogue must remain usable when the live API fails.
     await page.route('**/api/**', route => route.fulfill({ status: 502, contentType: 'application/json', body: '{"error":"offline"}' }));
     await page.goto('http://127.0.0.1:4173/games', { waitUntil: 'networkidle' });
-    assert.equal(await page.locator('.game-card').count(), 41);
-    assert.match(await page.locator('.games-status').textContent(), /saved data/);
+    assert.equal(await page.locator('.game-card').count(), catalogueSize);
+    assert.equal(await page.locator('.games-status').textContent(), '');
     assert.deepEqual(errors, []);
-    console.log('PASS: first thumbnail matches Roblox; 16:9 images; 41 games; search, sort, mobile navigation, 4 viewport sizes, API failure fallback; no page errors.');
+    console.log(`PASS: first thumbnail matches Roblox; 16:9 images; ${catalogueSize} games; search, sort, mobile navigation, 4 viewport sizes, silent API failure fallback; no page errors.`);
   } finally { await browser.close(); }
 }
 main().catch(error => { console.error(error); process.exit(1); });

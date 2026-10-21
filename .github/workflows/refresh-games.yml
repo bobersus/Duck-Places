@@ -1,0 +1,45 @@
+name: Refresh game catalogue
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - script.js
+      - scripts/update-game-snapshot.cjs
+      - .github/workflows/refresh-games.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: refresh-game-catalogue
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the current catalogue
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: main
+      - name: Fetch names and first thumbnails from Roblox
+        run: node scripts/update-game-snapshot.cjs
+      - name: Check saved metadata
+        run: node --test tests/snapshot.test.js
+      - name: Save the refreshed catalogue
+        run: |
+          git add assets/games-data.js
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Refresh Roblox game catalogue"
+          git push origin HEAD:main
+      - name: Rebuild the branch-based GitHub Pages site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          build_type=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.build_type')
+          if [ "$build_type" = "legacy" ]; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
+          fi
