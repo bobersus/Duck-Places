@@ -144,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
   toggle?.addEventListener('click', () => { const open = document.body.classList.toggle('nav-open'); toggle.setAttribute('aria-expanded', String(open)); });
   nav?.addEventListener('click', event => { if (event.target.closest('a')) closeNav(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeNav(); });
-  document.getElementById('scrollDown')?.addEventListener('click', () => document.getElementById('our-games')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }));
   document.getElementById('copyDiscordBtn')?.addEventListener('click', async () => {
     const feedback = document.getElementById('copyFeedback');
     try { await navigator.clipboard.writeText(document.getElementById('discordTag').textContent.trim()); feedback.textContent = 'Copied!'; }

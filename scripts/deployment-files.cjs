@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
-const paths = ['index.html', 'games.html', 'careers.html', 'privacy-policy.html', '404.html', 'style.css', 'design.css', 'refinements.css', 'script.js', 'client.js', 'theme.js', 'package.json', 'vercel.json', 'api/games.js', 'api/game-icons.js', 'api/game-thumbnails.js', 'lib/roblox.js'];
+const paths = ['index.html', 'games.html', 'careers.html', 'privacy-policy.html', '404.html', 'style.css', 'design.css', 'refinements.css', 'script.js', 'client.js', 'theme.js', 'effects.js', 'package.json', 'vercel.json', 'api/games.js', 'api/game-icons.js', 'api/game-thumbnails.js', 'lib/roblox.js'];
 function walk(dir) {
   for (const entry of fs.readdirSync(path.join(root, dir), { withFileTypes: true })) {
     const file = `${dir}/${entry.name}`;

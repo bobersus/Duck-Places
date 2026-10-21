@@ -16,7 +16,7 @@ http.createServer(async (req, res) => {
   let relative = decodeURIComponent(route).replace(/^\/+/, '') || 'index.html';
   if (!path.extname(relative)) relative += '.html';
   const target = path.resolve(root, relative);
-  if (!target.startsWith(root + path.sep) || !/^(?:assets\/|(?:index|games|careers|privacy-policy|404)\.html$|(?:script\.js|client\.js|theme\.js|style\.css|design\.css|refinements\.css)$)/.test(relative)) return res.status(404).end();
+  if (!target.startsWith(root + path.sep) || !/^(?:assets\/|(?:index|games|careers|privacy-policy|404)\.html$|(?:script\.js|client\.js|theme\.js|effects\.js|style\.css|design\.css|refinements\.css)$)/.test(relative)) return res.status(404).end();
   const exists = fs.existsSync(target) && fs.statSync(target).isFile();
   const file = exists ? target : path.join(root, '404.html');
   res.statusCode = exists ? 200 : 404;
