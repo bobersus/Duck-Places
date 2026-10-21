@@ -17,7 +17,8 @@ async function read(url) {
     const stats = info.data.find(s => s.id === g.universeId);
     const image = images.data.find(s => s.universeId === g.universeId)?.thumbnails?.[0];
     if (!stats?.name || !Number.isSafeInteger(stats.rootPlaceId) || stats.rootPlaceId <= 0) throw new Error(`Missing Roblox metadata for universe ${g.universeId}; keeping the previous snapshot`);
-    return { ...g, placeId: stats.rootPlaceId, robloxUrl: `https://www.roblox.com/games/${stats.rootPlaceId}`, name: stats.name, playing: stats.playing ?? null, visits: stats.visits ?? null,
+    if (!Number.isFinite(Date.parse(stats.created))) throw new Error(`Missing Roblox creation date for universe ${g.universeId}; keeping the previous snapshot`);
+    return { ...g, placeId: stats.rootPlaceId, robloxUrl: `https://www.roblox.com/games/${stats.rootPlaceId}`, name: stats.name, created: stats.created, playing: stats.playing ?? null, visits: stats.visits ?? null,
       thumbnail: image?.state === 'Completed' ? image.imageUrl : '/assets/game-placeholder.svg' };
   });
   fs.writeFileSync('assets/games-data.js', 'window.DUCK_PLACES_SNAPSHOT = ' + JSON.stringify({ updatedAt: new Date().toISOString(), games }) + ';\n');

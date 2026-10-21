@@ -1,7 +1,7 @@
 const PLACEHOLDER = '/assets/game-placeholder.svg';
 const CACHE_KEY = 'duckplaces:games:thumbnails:v1';
 const snapshot = window.DUCK_PLACES_SNAPSHOT;
-let gamesData = DUCK_PLACES_GAMES.map(game => ({ ...game, name: 'Loading experience…', robloxUrl: `https://www.roblox.com/games/${game.placeId}`, playing: null, visits: null, thumbnail: PLACEHOLDER }));
+let gamesData = DUCK_PLACES_GAMES.map(game => ({ ...game, name: 'Loading experience…', robloxUrl: `https://www.roblox.com/games/${game.placeId}`, created: null, playing: null, visits: null, thumbnail: PLACEHOLDER }));
 let lastUpdated = null;
 let refreshPending = false;
 
@@ -18,6 +18,7 @@ function applySnapshot(saved) {
     // Only accept a numeric cached API place ID and always construct the Roblox URL ourselves.
     const placeId = Number.isSafeInteger(item.placeId) && item.placeId > 0 ? item.placeId : game.placeId;
     return { ...game, placeId, robloxUrl: `https://www.roblox.com/games/${placeId}`, name: typeof item.name === 'string' ? item.name : game.name,
+      created: typeof item.created === 'string' && Number.isFinite(Date.parse(item.created)) ? item.created : game.created,
       playing: Number.isFinite(item.playing) ? item.playing : game.playing,
       visits: Number.isFinite(item.visits) ? item.visits : game.visits,
       thumbnail: validThumbnail(item.thumbnail) ? item.thumbnail : game.thumbnail };
@@ -53,6 +54,7 @@ async function refreshGames() {
     const image = images.get(game.universeId);
     const placeId = Number.isSafeInteger(info?.rootPlaceId) && info.rootPlaceId > 0 ? info.rootPlaceId : game.placeId;
     return { ...game, placeId, robloxUrl: `https://www.roblox.com/games/${placeId}`, name: info?.name || game.name,
+      created: typeof info?.created === 'string' && Number.isFinite(Date.parse(info.created)) ? info.created : game.created,
       playing: Number.isFinite(info?.playing) ? info.playing : game.playing,
       visits: Number.isFinite(info?.visits) ? info.visits : game.visits,
       thumbnail: image?.state === 'Completed' && validThumbnail(image.imageUrl) ? image.imageUrl : game.thumbnail };
@@ -111,11 +113,18 @@ function renderAllGames() {
   const query = document.getElementById('gameSearch')?.value.trim().toLowerCase() || '';
   const sort = document.getElementById('gameSort')?.value || 'online';
   const list = gamesData.filter(game => game.name.toLowerCase().includes(query));
-  list.sort(sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'visits' ? (a, b) => (b.visits ?? -1) - (a.visits ?? -1) : (a, b) => (b.playing ?? -1) - (a.playing ?? -1));
+  list.sort(sort === 'newest' || sort === 'oldest' ? (a, b) => compareGamesByCreated(a, b, sort === 'newest') : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'visits' ? (a, b) => (b.visits ?? -1) - (a.visits ?? -1) : (a, b) => (b.playing ?? -1) - (a.playing ?? -1));
   grid.replaceChildren(...list.map(createGameCard));
   if (!list.length) grid.append(element('p', 'empty-state', 'No games found. Try a different name.'));
   const count = document.getElementById('gameCount');
   if (count) count.textContent = `${list.length} ${list.length === 1 ? 'experience' : 'experiences'}`;
+}
+function compareGamesByCreated(a, b, newestFirst) {
+  const first = Date.parse(a.created);
+  const second = Date.parse(b.created);
+  if (!Number.isFinite(first)) return Number.isFinite(second) ? 1 : 0;
+  if (!Number.isFinite(second)) return -1;
+  return newestFirst ? second - first : first - second;
 }
 function renderEverything() {
   for (const [id, key] of [['statCurrentPlayers', 'playing'], ['statTotalVisits', 'visits']]) {
@@ -171,6 +180,7 @@ function setupSortPicker() {
     const button = element('button', 'sort-option', option.textContent); button.type = 'button';
     button.setAttribute('role', 'option'); button.tabIndex = -1;
     button.dataset.value = option.value; button.setAttribute('aria-selected', String(option.selected));
+    if (option.title) button.title = option.title;
     button.addEventListener('click', () => {
       select.value = option.value; caption.textContent = option.textContent;
       options.forEach(item => item.setAttribute('aria-selected', String(item === button)));

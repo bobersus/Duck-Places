@@ -37,6 +37,15 @@ async function main() {
     await page.getByRole('option', { name: 'Name A–Z' }).click();
     const names = await page.locator('.game-card-title').allTextContents();
     assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b)));
+    const dates = await page.evaluate(() => gamesData.map(game => ({ placeId: game.placeId, created: game.created })));
+    assert.ok(dates.every(game => Number.isFinite(Date.parse(game.created))));
+    for (const [label, direction] of [['Newest first', -1], ['Oldest first', 1]]) {
+      await page.locator('#sortTrigger').click();
+      await page.getByRole('option', { name: label, exact: true }).click();
+      const displayed = await page.locator('#allGamesGrid .game-card').evaluateAll(cards => cards.map(card => Number(card.dataset.placeId)));
+      const expected = [...dates].sort((a, b) => direction * (Date.parse(a.created) - Date.parse(b.created))).map(game => game.placeId);
+      assert.deepEqual(displayed, expected, label);
+    }
     await page.screenshot({ path: 'preview/catalog-desktop.png', fullPage: false });
     for (const width of [390, 768, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
@@ -61,7 +70,7 @@ async function main() {
     assert.equal(await page.locator('.game-card').count(), catalogueSize);
     assert.equal(await page.locator('.games-status').textContent(), '');
     assert.deepEqual(errors, []);
-    console.log(`PASS: first thumbnail matches Roblox; 16:9 images; ${catalogueSize} games; search, sort, mobile navigation, 4 viewport sizes, silent API failure fallback; no page errors.`);
+    console.log(`PASS: first thumbnail matches Roblox; 16:9 images; ${catalogueSize} games; search, name and creation-date sorting in both directions, mobile navigation, 4 viewport sizes, silent API failure fallback; no page errors.`);
   } finally { await browser.close(); }
 }
 main().catch(error => { console.error(error); process.exit(1); });

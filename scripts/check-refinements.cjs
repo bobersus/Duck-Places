@@ -50,7 +50,7 @@ async function main() {
     await page.keyboard.press('ArrowDown'); await page.keyboard.press('Enter');
     assert.equal(await page.locator('#gameSort').inputValue(), 'visits');
     assert.equal(await trigger.getAttribute('aria-expanded'), 'false');
-    await trigger.press('ArrowDown'); await page.keyboard.press('End'); await page.keyboard.press('Enter');
+    await trigger.press('ArrowDown'); await page.keyboard.press('Home'); await page.keyboard.press('ArrowDown'); await page.keyboard.press('ArrowDown'); await page.keyboard.press('Enter');
     assert.equal(await page.locator('#gameSort').inputValue(), 'name');
     await trigger.click(); await page.keyboard.press('Escape');
     assert.equal(await trigger.getAttribute('aria-expanded'), 'false');
