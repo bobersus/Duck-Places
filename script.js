@@ -164,5 +164,17 @@ const DUCK_PLACES_GAMES = [
   {
     "placeId": 72457210303073,
     "universeId": 10306657017
+  },
+  { // Roll and Break Eggs
+    "placeId": 74504855935266,
+    "universeId": 10770344698
+  },
+  { // Lucky Animals 🐲
+    "placeId": 121442124926742,
+    "universeId": 10768463047
+  },
+  { // Build a Squishy Dumpling Defense!
+    "placeId": 83473049785066,
+    "universeId": 10426292120
   }
 ];
