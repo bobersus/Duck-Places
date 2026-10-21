@@ -7,9 +7,19 @@ async function main() {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'domcontentloaded' });
-    const intro = await page.locator('#hero').evaluate(hero => hero.getAnimations({ subtree: true }).filter(animation => animation.effect.getKeyframes().some(frame => String(frame.transform).includes('scale('))).length);
+    const intro = await page.locator('#hero .hero-content').evaluate(hero => hero.getAnimations({ subtree: true }).filter(animation => animation.effect.getKeyframes().some(frame => String(frame.transform).includes('scale('))).length);
     assert.equal(intro, 4, 'Only the first hero has four scale intro animations');
+    assert.equal(await page.locator('.hero-backdrop-image').evaluate(image => image.getAnimations().length), 1);
     await page.locator('#hero').evaluate(hero => Promise.all(hero.getAnimations({ subtree: true }).map(animation => animation.finished)));
+    await page.evaluate(() => scrollTo({ top: 300, behavior: 'instant' }));
+    await page.waitForFunction(() => parseFloat(document.querySelector('.hero-backdrop').style.getPropertyValue('--hero-shift')) >= 29);
+    const covered = await page.locator('#hero').evaluate(hero => {
+      const frame = hero.getBoundingClientRect(), image = hero.querySelector('.hero-backdrop').getBoundingClientRect();
+      return image.top <= frame.top && image.bottom >= frame.bottom && image.left <= frame.left && image.right >= frame.right;
+    });
+    assert.ok(covered, 'Parallax never exposes a gap at the edges');
+    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+    await page.waitForFunction(() => document.querySelector('.hero-backdrop').style.getPropertyValue('--hero-shift') === '0px');
     assert.equal(await page.locator('#scrollDown').count(), 0);
     for (const [width, height] of [[1920,945], [1440,900], [390,844], [844,390]]) {
       await page.setViewportSize({ width, height });
@@ -45,7 +55,9 @@ async function main() {
       assert.ok(await links.first().evaluate(el => getComputedStyle(el, '::after').content === 'none'));
       if (route !== '/') assert.equal(await page.locator('.careers-intro').evaluateAll(nodes => nodes.flatMap(el => el.getAnimations({ subtree: true })).length), 0);
     }
+    await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
     await page.emulateMedia({ reducedMotion: 'reduce' });
+    assert.equal(await page.locator('.hero-backdrop').evaluate(el => getComputedStyle(el).transform), 'none');
     await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('#hero').evaluate(hero => hero.getAnimations({ subtree: true }).length), 0);
     assert.equal(await page.locator('.motion-pending').count(), 0);

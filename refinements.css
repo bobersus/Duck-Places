@@ -6,6 +6,18 @@
   padding: clamp(28px, 7dvh, 96px) 0;
 }
 .btn-primary::after, .text-link::after { content: none; }
+#hero.has-parallax { background-image: none; }
+.hero-backdrop {
+  position: absolute; inset: -64px -16px; z-index: -2; pointer-events: none;
+  transform: translate3d(0, var(--hero-shift, 0px), 0);
+}
+.hero-backdrop-image {
+  width: 100%; height: 100%; background-position: center; background-size: cover;
+  transform-origin: center;
+}
+@media(prefers-reduced-motion:reduce) {
+  #hero .hero-backdrop, #hero .hero-backdrop-image { transform: none; }
+}
 .link-arrow { display: block; width: 18px; height: 18px; flex: 0 0 18px; transition: transform 220ms ease; }
 .btn-primary:hover .link-arrow, .text-link:hover .link-arrow { transform: translate(2px, -2px); }
 .search-wrap::before {

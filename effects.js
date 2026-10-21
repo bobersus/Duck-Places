@@ -68,13 +68,54 @@
     }
   }
 
+  function setupHeroBackground() {
+    const hero = document.getElementById('hero');
+    if (!hero || reduced.matches) return;
+    const backdrop = document.createElement('div');
+    backdrop.className = 'hero-backdrop'; backdrop.setAttribute('aria-hidden', 'true');
+    const image = document.createElement('div');
+    image.className = 'hero-backdrop-image';
+    image.style.backgroundImage = getComputedStyle(hero).backgroundImage;
+    backdrop.append(image); hero.prepend(backdrop); hero.classList.add('has-parallax');
+
+    // A separate layer keeps the slow background move independent of the UI intro.
+    if (image.animate && hero.getBoundingClientRect().bottom > 0 && scrollY <= 100) {
+      const animation = image.animate([
+        { transform: 'translateY(-10px) scale(1.12)' },
+        { transform: 'translateY(0) scale(1)' }
+      ], { duration: 2300, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'backwards' });
+      activeAnimations.add(animation);
+      animation.finished.then(() => activeAnimations.delete(animation), () => activeAnimations.delete(animation));
+    }
+    let frame = 0;
+    function update() {
+      frame = 0;
+      if (reduced.matches || document.hidden) return;
+      const bounds = hero.getBoundingClientRect();
+      if (bounds.bottom <= 0 || bounds.top >= innerHeight) return;
+      const limit = innerWidth <= 800 ? 32 : 56;
+      const shift = Math.min(limit, Math.max(0, scrollY) * 0.1);
+      backdrop.style.setProperty('--hero-shift', `${shift}px`);
+    }
+    function schedule() { if (!frame) frame = requestAnimationFrame(update); }
+    addEventListener('scroll', schedule, { passive: true });
+    addEventListener('resize', schedule, { passive: true });
+    reduced.addEventListener('change', () => {
+      if (reduced.matches) {
+        cancelAnimationFrame(frame); frame = 0;
+        backdrop.style.setProperty('--hero-shift', '0px');
+      } else schedule();
+    });
+    update();
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.btn-primary, .text-link').forEach(link => { if (!link.querySelector('.link-arrow')) link.append(arrow()); });
     const header = document.querySelector('.site-header');
     const measureHeader = () => document.documentElement.style.setProperty('--site-header-height', `${header?.getBoundingClientRect().height || 0}px`);
     measureHeader();
     if (header && 'ResizeObserver' in window) new ResizeObserver(measureHeader).observe(header);
-    setupReveals(); setupHero();
+    setupReveals(); setupHero(); setupHeroBackground();
   });
   reduced.addEventListener('change', () => {
     if (!reduced.matches) return;
