@@ -33,7 +33,8 @@ test('preserves frontend response format and adds CDN caching', async () => {
       await makeHandler(kind)({ method: 'GET', url: '/api/games?universeIds=123,123' }, res);
       assert.equal(res.code, 200);
       assert.deepEqual(res.body, { data: [{ id: 123 }] });
-      assert.match(res.headers['Vercel-CDN-Cache-Control'], /s-maxage=120/);
+      assert.match(res.headers['Vercel-CDN-Cache-Control'], /s-maxage=60/);
+      assert.equal(res.headers['Access-Control-Allow-Origin'], '*');
       assert.equal(requested.searchParams.get('universeIds'), '123');
       if (kind === 'icons') assert.equal(requested.searchParams.get('size'), '512x512');
       if (kind === 'thumbnails') {
@@ -56,4 +57,12 @@ test('upstream failures are not cached as successful responses', async () => {
     assert.equal(res.headers['Cache-Control'], 'no-store');
     assert.equal(res.headers['Vercel-CDN-Cache-Control'], undefined);
   } finally { global.fetch = previous; }
+});
+
+test('cross-origin read preflight succeeds without contacting Roblox', async () => {
+  const res = response();
+  await makeHandler('games')({ method: 'OPTIONS', url: '/api/games' }, res);
+  assert.equal(res.code, 204);
+  assert.equal(res.headers['Access-Control-Allow-Origin'], '*');
+  assert.equal(res.headers['Access-Control-Allow-Methods'], 'GET, HEAD, OPTIONS');
 });

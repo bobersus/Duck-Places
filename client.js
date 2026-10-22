@@ -1,5 +1,7 @@
 const PLACEHOLDER = '/assets/game-placeholder.svg';
 const CACHE_KEY = 'duckplaces:games:thumbnails:v1';
+// GitHub Pages serves files only; use our existing Vercel backend for live data.
+const API_BASE = ['duckplaces.com', 'www.duckplaces.com', 'bobersus.github.io'].includes(window.location?.hostname) ? 'https://duckplaces.vercel.app' : '';
 const snapshot = window.DUCK_PLACES_SNAPSHOT;
 let gamesData = DUCK_PLACES_GAMES.map(game => ({ ...game, name: 'Loading experience…', robloxUrl: `https://www.roblox.com/games/${game.placeId}`, created: null, playing: null, visits: null, thumbnail: PLACEHOLDER }));
 let lastUpdated = null;
@@ -7,7 +9,7 @@ let refreshPending = false;
 
 function formatNumber(value) {
   if (!Number.isFinite(value)) return '—';
-  return new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(value);
+  return value.toLocaleString('en-US');
 }
 function applySnapshot(saved) {
   if (!Array.isArray(saved?.games) || !Number.isFinite(Date.parse(saved.updatedAt))) return;
@@ -44,8 +46,8 @@ async function refreshGames() {
   refreshPending = true;
   const ids = DUCK_PLACES_GAMES.map(game => game.universeId).join(',');
   const results = await Promise.allSettled([
-    fetchJson(`/api/games?universeIds=${ids}`),
-    fetchJson(`/api/game-thumbnails?universeIds=${ids}`)
+    fetchJson(`${API_BASE}/api/games?universeIds=${ids}`),
+    fetchJson(`${API_BASE}/api/game-thumbnails?universeIds=${ids}`)
   ]);
   const stats = results[0].status === 'fulfilled' ? new Map(results[0].value.map(item => [item.id, item])) : new Map();
   const images = results[1].status === 'fulfilled' ? new Map(results[1].value.map(item => [item.universeId, item.thumbnails?.[0]])) : new Map();
@@ -156,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderEverything(); updateTimestamp();
   document.getElementById('gameSearch')?.addEventListener('input', renderAllGames);
   document.getElementById('gameSort')?.addEventListener('change', renderAllGames);
-  refreshGames(); setInterval(refreshGames, 120000);
+  refreshGames(); setInterval(refreshGames, 60000);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshGames(); });
 });
 

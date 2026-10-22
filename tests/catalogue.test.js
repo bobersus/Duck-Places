@@ -53,3 +53,33 @@ test('creation date sorting handles both directions and always puts unknown date
   assert.deepEqual([...games].sort((a, b) => compare(a, b, true)).map(g => g.id), ['new', 'old', 'unknown', 'invalid']);
   assert.deepEqual([...games].sort((a, b) => compare(a, b, false)).map(g => g.id), ['old', 'new', 'unknown', 'invalid']);
 });
+
+test('GitHub Pages reads the live Vercel API and hero totals change without compact rounding', async () => {
+  let players = 330, visits = 27912345, offline = false;
+  const requests = [];
+  const nodes = { statCurrentPlayers: { textContent: '' }, statTotalVisits: { textContent: '' } };
+  const context = vm.createContext({
+    window: { location: { hostname: 'duckplaces.com' } }, DUCK_PLACES_GAMES: [{ placeId: 111, universeId: 222 }],
+    document: { hidden: false, addEventListener() {}, getElementById(id) { return nodes[id] || null; }, querySelectorAll() { return []; } },
+    localStorage: { setItem() {} }, URL, AbortSignal, Intl, console,
+    fetch: async url => {
+      requests.push(url);
+      if (offline) throw new Error('Offline');
+      return { ok: true, json: async () => ({ data: url.includes('/api/games?')
+        ? [{ id: 222, name: 'Live game', playing: players, visits }]
+        : [{ universeId: 222, thumbnails: [] }] }) };
+    }
+  });
+  vm.runInContext(fs.readFileSync('client.js', 'utf8'), context);
+  await vm.runInContext('refreshGames()', context);
+  assert.ok(requests.every(url => url.startsWith('https://duckplaces.vercel.app/api/')));
+  assert.equal(nodes.statCurrentPlayers.textContent, '330');
+  assert.equal(nodes.statTotalVisits.textContent, '27,912,345');
+  players = 417; visits += 12;
+  await vm.runInContext('refreshGames()', context);
+  assert.equal(nodes.statCurrentPlayers.textContent, '417');
+  assert.equal(nodes.statTotalVisits.textContent, '27,912,357');
+  offline = true;
+  await vm.runInContext('refreshGames()', context);
+  assert.equal(nodes.statCurrentPlayers.textContent, '417');
+});
