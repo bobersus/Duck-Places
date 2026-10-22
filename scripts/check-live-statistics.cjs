@@ -22,7 +22,7 @@ async function main() {
     const response = await live;
     assert.equal(response.headers()['access-control-allow-origin'], '*');
     const data = (await response.json()).data;
-    const format = number => number.toLocaleString('en-US');
+    const format = number => new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(number);
     const totals = list => ({ players: format(list.reduce((n, game) => n + game.playing, 0)), visits: format(list.reduce((n, game) => n + game.visits, 0)) });
     async function checkHero(list) {
       const expected = totals(list);
@@ -38,7 +38,7 @@ async function main() {
     const card = page.locator(`[data-place-id="${changed[0].rootPlaceId}"]`);
     await page.waitForFunction(({ id, visits }) => {
       const values = document.querySelector(`[data-place-id="${id}"]`)?.querySelectorAll('.game-stat-value');
-      return values?.[0]?.textContent === '11,007' && values?.[1]?.textContent === visits;
+      return values?.[0]?.textContent === '11K' && values?.[1]?.textContent === visits;
     }, { id: changed[0].rootPlaceId, visits: format(changed[0].visits) });
     await page.setViewportSize({ width: 390, height: 844 });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
@@ -47,10 +47,10 @@ async function main() {
     await nextLive;
     await page.waitForFunction(({ id, visits }) => {
       const values = document.querySelector(`[data-place-id="${id}"]`)?.querySelectorAll('.game-stat-value');
-      return values?.[0]?.textContent === '11,007' && values?.[1]?.textContent === visits;
+      return values?.[0]?.textContent === '11K' && values?.[1]?.textContent === visits;
     }, { id: changed[0].rootPlaceId, visits: format(changed[0].visits) });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
-    console.log(JSON.stringify({ result: 'PASS', liveGameCount: data.length, originalTotals, updatedTotals, checks: 'Actual cross-origin API; exact totals; minute timer; refreshed home and catalogue cards; mobile layout' }));
+    console.log(JSON.stringify({ result: 'PASS', liveGameCount: data.length, originalTotals, updatedTotals, checks: 'Actual cross-origin API; compact totals; minute timer; refreshed home and catalogue cards; mobile layout' }));
   } finally { await browser.close(); }
 }
 main().catch(error => { console.error(error); process.exit(1); });

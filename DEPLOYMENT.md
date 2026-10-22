@@ -1,6 +1,6 @@
 # Duck Places — Vercel
 
-Live statistics fix (2026-10-22): while the custom domain remains on GitHub Pages, its frontend now calls the public read-only https://duckplaces.vercel.app/api backend with CORS support. Responses are cached at the CDN for 60 seconds, with 60 seconds of stale-while-revalidate; the page refreshes every minute. The hero and game cards display full counts rather than compact rounded values. API deployment: dpl_7t7c84vLZkRSxSqo9i7yz3J7jRnw. The DNS cutover below is optional for this fix and has not been performed.
+Live statistics fix (2026-10-22): while the custom domain remains on GitHub Pages, its frontend now calls the public read-only https://duckplaces.vercel.app/api backend with CORS support. Responses are cached at the CDN for 60 seconds, with 60 seconds of stale-while-revalidate; the page refreshes every minute. The hero and game cards use Intl.NumberFormat compact counts (K/M/B). Hero totals count up from zero on first display and smoothly transition on live updates; reduced-motion mode displays totals immediately. API deployment: dpl_7t7c84vLZkRSxSqo9i7yz3J7jRnw. The DNS cutover below is optional for this fix and has not been performed.
 
 Local visual changes made after this deployment are not published. See LOCAL-PREVIEW.md for the current local version. File comparisons in check-deployment.cjs are intended to run after publishing the corresponding local version.
 

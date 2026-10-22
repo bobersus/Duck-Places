@@ -6,10 +6,37 @@ const snapshot = window.DUCK_PLACES_SNAPSHOT;
 let gamesData = DUCK_PLACES_GAMES.map(game => ({ ...game, name: 'Loading experience…', robloxUrl: `https://www.roblox.com/games/${game.placeId}`, created: null, playing: null, visits: null, thumbnail: PLACEHOLDER }));
 let lastUpdated = null;
 let refreshPending = false;
+const numberFormatter = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
+const heroCounters = new WeakMap();
 
 function formatNumber(value) {
   if (!Number.isFinite(value)) return '—';
-  return value.toLocaleString('en-US');
+  return numberFormatter.format(value);
+}
+function animateHeroCounter(el, target) {
+  const previous = heroCounters.get(el);
+  if (previous?.target === target) return;
+  if (previous?.frame) cancelAnimationFrame(previous.frame);
+  const state = { value: previous?.value ?? 0, target, frame: null };
+  heroCounters.set(el, state);
+  el.title = Number.isFinite(target) ? target.toLocaleString('en-US') : '';
+  if (!Number.isFinite(target) || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches || typeof requestAnimationFrame !== 'function') {
+    state.value = target;
+    el.textContent = formatNumber(target);
+    return;
+  }
+  const from = Number.isFinite(state.value) ? state.value : 0;
+  const duration = Number.isFinite(previous?.target) ? 650 : 1700;
+  const start = performance.now();
+  el.textContent = formatNumber(Math.round(from));
+  function tick(now) {
+    const progress = Math.min(1, Math.max(0, (now - start) / duration));
+    const eased = 1 - Math.pow(1 - progress, 3);
+    state.value = progress === 1 ? target : from + (target - from) * eased;
+    el.textContent = formatNumber(Math.round(state.value));
+    state.frame = progress < 1 ? requestAnimationFrame(tick) : null;
+  }
+  state.frame = requestAnimationFrame(tick);
 }
 function applySnapshot(saved) {
   if (!Array.isArray(saved?.games) || !Number.isFinite(Date.parse(saved.updatedAt))) return;
@@ -131,7 +158,7 @@ function compareGamesByCreated(a, b, newestFirst) {
 function renderEverything() {
   for (const [id, key] of [['statCurrentPlayers', 'playing'], ['statTotalVisits', 'visits']]) {
     const el = document.getElementById(id);
-    if (el) el.textContent = gamesData.some(game => Number.isFinite(game[key])) ? formatNumber(gamesData.reduce((sum, game) => sum + (game[key] || 0), 0)) : '—';
+    if (el) animateHeroCounter(el, gamesData.some(game => Number.isFinite(game[key])) ? gamesData.reduce((sum, game) => sum + (game[key] || 0), 0) : null);
   }
   renderTopGames(); renderAllGames();
 }
