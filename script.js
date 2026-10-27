@@ -176,5 +176,9 @@ const DUCK_PLACES_GAMES = [
   { // Build a Squishy Dumpling Defense!
     "placeId": 83473049785066,
     "universeId": 10426292120
+  },
+  { // Sling to Steal an Egg
+    "placeId": 83765689176609,
+    "universeId": 10772429165
   }
 ];
